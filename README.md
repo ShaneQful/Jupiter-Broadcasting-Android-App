@@ -1,4 +1,4 @@
-r	Jupiter-Broadcasting-Android-App
+Jupiter-Broadcasting-Android-App
 ================================
 
 Its an app to lets you view, download and stream shows from http://www.jupiterbroadcasting.com
