@@ -1,4 +1,4 @@
-Jupiter-Broadcasting-Android-App
+r	Jupiter-Broadcasting-Android-App
 ================================
 
 Its an app to lets you view, download and stream shows from http://www.jupiterbroadcasting.com
@@ -26,9 +26,6 @@ If anyone wants to read about its development of get any of my other apps got to
 * HLS Stream if I decide to change the android version
 
 ### Notes on anyone wanting to contribute:
-
-
-* Using 4 spaces as tabs instead of \t character because this is the netbeans default.
 
 * [Use standard java style guide](http://www.oracle.com/technetwork/java/codeconv-138413.html)
 
