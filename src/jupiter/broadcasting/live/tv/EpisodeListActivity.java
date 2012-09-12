@@ -16,7 +16,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
-
+/*
+ * Copyright (c) 2012 Shane Quigley
+ *
+ * This software is MIT licensed see link for details
+ * http://www.opensource.org/licenses/MIT
+ * 
+ * @author Shane Quigley
+ */
 public class EpisodeListActivity extends Activity{
 	Hashtable<String, String[]> rssLinkTable;
 	public void onCreate(Bundle savedInstanceState) {
@@ -26,15 +33,15 @@ public class EpisodeListActivity extends Activity{
 		String feed;
 		feed = this.getIntent().getStringExtra("SHOW_FEED");
 		SaxRssParser parser = new SaxRssParser();
-        RssHandler customhandler = new RssHandler("title", "link", 15);
-        parser.setRssHadler(customhandler);
-        rssLinkTable = parser.parse(feed);
-        List<String> episodes = parser.getTitles();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, android.R.id.text1, episodes);
-        showsListView.setAdapter(adapter);
-        final AlertDialog.Builder alertbox = new AlertDialog.Builder(this);
-        showsListView.setOnItemClickListener(new OnItemClickListener() {
+		RssHandler customhandler = new RssHandler("title", "link", 15);
+		parser.setRssHadler(customhandler);
+		rssLinkTable = parser.parse(feed);
+		List<String> episodes = parser.getTitles();
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+					android.R.layout.simple_list_item_1, android.R.id.text1, episodes);
+		showsListView.setAdapter(adapter);
+		final AlertDialog.Builder alertbox = new AlertDialog.Builder(this);
+		showsListView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
 				final String urls[] = rssLinkTable.get(parent.getAdapter().getItem(position));
 				Toast.makeText(getApplicationContext(),

@@ -17,7 +17,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
-
+/*
+ * Copyright (c) 2012 Shane Quigley
+ *
+ * This software is MIT licensed see link for details
+ * http://www.opensource.org/licenses/MIT
+ * 
+ * @author Shane Quigley
+ */
 public class Home extends Activity {
     /** Called when the activity is first created. */
 	private final int NOTIFICATION_ID = 3434;

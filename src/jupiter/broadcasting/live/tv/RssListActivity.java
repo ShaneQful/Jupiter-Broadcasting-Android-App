@@ -10,7 +10,14 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
+/*
+ * Copyright (c) 2012 Shane Quigley
+ *
+ * This software is MIT licensed see link for details
+ * http://www.opensource.org/licenses/MIT
+ * 
+ * @author Shane Quigley
+ */
 public class RssListActivity extends Activity {
     /** Called when the activity is first created. */
     public Hashtable<String,String> showToFeedTable;
