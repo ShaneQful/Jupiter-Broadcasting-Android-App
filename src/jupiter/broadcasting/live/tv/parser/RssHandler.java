@@ -93,13 +93,11 @@ public class RssHandler extends DefaultHandler{
     
     public Hashtable<String,String[]> getTable(){
         Hashtable<String,String[]> output = new Hashtable<String,String[]>();
-    	Log.println(30, "FUCK", rssTitles.size()+" "+rssLinks.size() +" "+rssEnclosures.size());
         for(int i =0; i< rssTitles.size(); i++){
         	try{
-        		Log.println(30, "FUCK", rssTitles.elementAt(i)+" : "+rssLinks.elementAt(i)+" "+rssEnclosures.elementAt(i));
         		output.put(rssTitles.elementAt(i), new String[]{rssLinks.elementAt(i),rssEnclosures.elementAt(i)});
         	}catch (Exception e){
-        		Log.println(30, "FUCK", rssTitles.size()+" "+rssLinks.size() +" "+rssEnclosures.size());
+        		Log.e("Woops", e.getMessage());
         	}
         }
         return output;
