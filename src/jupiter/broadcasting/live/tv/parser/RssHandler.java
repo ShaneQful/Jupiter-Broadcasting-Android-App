@@ -4,6 +4,8 @@ import java.util.Hashtable;
 import java.util.Vector;
 import org.xml.sax.*;
 import org.xml.sax.helpers.DefaultHandler;
+
+import android.util.Log;
 /*
  * Copyright (c) 2012 Shane Quigley
  *
@@ -24,6 +26,7 @@ public class RssHandler extends DefaultHandler{
     private boolean isTitle = false;
     private boolean ifInsideItem = false;
     private boolean enclosure = true;
+    private boolean badLinkNext = false;
     /**
      * Constructor
      */
@@ -73,19 +76,31 @@ public class RssHandler extends DefaultHandler{
     }
     
     public void characters(char ch[], int start, int length) throws SAXException {
-        if (isLink) {
-            rssLinks.addElement(new String(ch, start, length));
-            isLink = false;
-        }else if(isTitle){
-            rssTitles.addElement(new String(ch, start, length));
-            isTitle = false;
-        }
+    	String toAdd = new String(ch, start, length);
+    	if(!toAdd.contains("del.icio.us")){
+	        if (isLink && !badLinkNext) {
+	            rssLinks.addElement(new String(ch, start, length));
+	            isLink = false;
+	        }else if(isTitle){
+	            rssTitles.addElement(new String(ch, start, length));
+	            isTitle = false;
+	            badLinkNext = false;
+	        }
+    	}else{
+    		badLinkNext = true;
+    	}
     }
     
     public Hashtable<String,String[]> getTable(){
         Hashtable<String,String[]> output = new Hashtable<String,String[]>();
+    	Log.println(30, "FUCK", rssTitles.size()+" "+rssLinks.size() +" "+rssEnclosures.size());
         for(int i =0; i< rssTitles.size(); i++){
-            output.put(rssTitles.elementAt(i), new String[]{rssLinks.elementAt(i),rssEnclosures.elementAt(i)});
+        	try{
+        		Log.println(30, "FUCK", rssTitles.elementAt(i)+" : "+rssLinks.elementAt(i)+" "+rssEnclosures.elementAt(i));
+        		output.put(rssTitles.elementAt(i), new String[]{rssLinks.elementAt(i),rssEnclosures.elementAt(i)});
+        	}catch (Exception e){
+        		Log.println(30, "FUCK", rssTitles.size()+" "+rssLinks.size() +" "+rssEnclosures.size());
+        	}
         }
         return output;
     }
