@@ -46,7 +46,7 @@ public class EpisodeListActivity extends Activity{
 			public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
 				final String urls[] = rssLinkTable.get(parent.getAdapter().getItem(position));
 				Toast.makeText(getApplicationContext(),
-						"Opening : " + parent.getAdapter().getItem(position), Toast.LENGTH_LONG)
+						getString(R.string.opening) + parent.getAdapter().getItem(position), Toast.LENGTH_LONG)
 						.show();
 				alertbox.setTitle(R.string.openepisodetitle);
 				alertbox.setItems(R.array.OpenEpisode, new DialogInterface.OnClickListener() {

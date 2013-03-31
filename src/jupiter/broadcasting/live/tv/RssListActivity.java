@@ -25,7 +25,7 @@ public class RssListActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		ListView showsListView = (ListView) findViewById(R.id.showList);
-		final String[] shows = new String[]{"All Shows",
+		final String[] shows = new String[]{getString(R.string.allshows),
 				"Coder Radio",
 				"Faux Show",
 				"Linux Action Show",
@@ -33,8 +33,8 @@ public class RssListActivity extends Activity {
 				"Techsnap",
 				"Unfilter"};
 		showToFeedTable = new Hashtable<String,String>();
-		showToFeedTable.put("Youtube Feed", "http://www.youtube.com/rss/user/JupiterBroadcasting/videos.rss");
-		showToFeedTable.put("All Shows", "http://feeds.feedburner.com/JupiterBroadcasting");
+		showToFeedTable.put(getString(R.string.youtubefeed), "http://www.youtube.com/rss/user/JupiterBroadcasting/videos.rss");
+		showToFeedTable.put(getString(R.string.allshows), "http://feeds.feedburner.com/JupiterBroadcasting");
 		showToFeedTable.put("Coder Radio", "http://feeds.feedburner.com/coderradiomp3");
 		showToFeedTable.put("Faux Show", "http://www.jupiterbroadcasting.com/feeds/FauxShowMP3.xml");
 		showToFeedTable.put("Linux Action Show", "http://feeds.feedburner.com/TheLinuxActionShow");
@@ -45,9 +45,9 @@ public class RssListActivity extends Activity {
 				android.R.layout.simple_list_item_1, android.R.id.text1, shows);
 		showsListView.setAdapter(adapter);
 		showsListView.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view, int pos,long id) {				
+			public void onItemClick(AdapterView<?> parent, View view, int pos,long id) {
 				Toast.makeText(getApplicationContext(),
-						"Loading : " + shows[pos], Toast.LENGTH_LONG)
+						getString(R.string.loading) + shows[pos], Toast.LENGTH_LONG)
 						.show();
 				String feed = showToFeedTable.get(shows[pos]);
 				Intent episodeIntent = new Intent(view.getContext(), EpisodeListActivity.class);

@@ -67,8 +67,8 @@ public class Home extends Activity {
 		play.setOnClickListener(new OnClickListener(){
 			public void onClick(View v) {
 				if(!mp.isPlaying()){
-					alertbox.setMessage("Which Stream:");
-					alertbox.setPositiveButton("Audio", new DialogInterface.OnClickListener() {
+					alertbox.setMessage(R.string.whichstream);
+					alertbox.setPositiveButton(R.string.audio, new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface arg0, int arg1) {
 							try {
 								mp.setDataSource("http://jblive.fm/");
@@ -93,11 +93,11 @@ public class Home extends Activity {
 							}
 							mp.start();
 							if(mp.isPlaying()){//Incase there is a network issue and the stream doesn't work
-								play.setText("Pause");
+								play.setText(R.string.pause);
 							}
 						}
 					});
-					alertbox.setNegativeButton("Video", new DialogInterface.OnClickListener() {
+					alertbox.setNegativeButton(R.string.video, new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface arg0, int arg1) {
 							Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("rtsp://videocdn-us.geocdn.scaleengine.net/jblive/jblive.stream"));
 							startActivity(i);						
