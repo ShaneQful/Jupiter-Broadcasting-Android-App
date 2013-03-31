@@ -31,7 +31,7 @@ public class Home extends Activity {
 	MediaPlayer mp = new MediaPlayer();
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main1);
+        setContentView(R.layout.startscreen);
         String ns = Context.NOTIFICATION_SERVICE;
 		NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
   		mNotificationManager.cancel(NOTIFICATION_ID);
