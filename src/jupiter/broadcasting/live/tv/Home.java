@@ -134,7 +134,7 @@ public class Home extends Activity {
     		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
     		PendingIntent intent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-    		notification.setLatestEventInfo(getApplicationContext(),"Jupiter Broadcasting", "Playing Live Stream", intent);
+    		notification.setLatestEventInfo(getApplicationContext(),"Jupiter Broadcasting", getString(R.string.plaiyinglivestream), intent);
 
     		notification.flags = Notification.FLAG_ONGOING_EVENT ;   
     		mNotificationManager.notify(NOTIFICATION_ID,notification);

@@ -3,4 +3,10 @@
     <string name="app_name">Jupiter Broadcasting</string>
     <string name="rss">RSS Feed</string>
     <string name="donate">Donate</string>
+    <string-array name="OpenEpisode">
+        <item >Web Page</item>
+        <item >Stream</item>
+    </string-array>
+    <string name="openepisodetitle">Would you like to:</string>
+    <string name="plaiyinglivestream">Playing Live Stream</string>
 </resources>

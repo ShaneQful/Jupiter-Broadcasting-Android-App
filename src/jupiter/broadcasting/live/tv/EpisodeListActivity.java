@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -47,18 +48,14 @@ public class EpisodeListActivity extends Activity{
 				Toast.makeText(getApplicationContext(),
 						"Opening : " + parent.getAdapter().getItem(position), Toast.LENGTH_LONG)
 						.show();
-				alertbox.setMessage("Would like to :");
-				alertbox.setPositiveButton("Stream", new DialogInterface.OnClickListener() {
+				alertbox.setTitle(R.string.openepisodetitle);
+				alertbox.setItems(R.array.OpenEpisode, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						Intent i = new Intent(Intent.ACTION_VIEW,Uri.parse(urls[1]));
-						i.setDataAndType(Uri.parse(urls[1]), "audio/mp3");
+						Intent i = new Intent(Intent.ACTION_VIEW,Uri.parse(urls[which]));
+						if(which == 1){
+							i.setDataAndType(Uri.parse(urls[1]), "audio/mp3");
+						}
 						startActivity(i);
-					}
-				});
-				alertbox.setNegativeButton("Open Web Page", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						Intent i = new Intent(Intent.ACTION_VIEW,Uri.parse(urls[0]));
-					    startActivity(i);
 					}
 				});
 				alertbox.show();
