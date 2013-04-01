@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Jupiter Broadcasting</string>
+    <string name="rss">RSS Feed</string>
+    <string name="donate">Doneren</string>
+    <string-array name="OpenEpisode">
+        <item >Webpagina</item>
+        <item >Stream</item>
+    </string-array>
+    <string name="openepisodetitle">Wil je:</string>
+    <string name="plaiyinglivestream">Live stream afspelen</string>
+    <string name="opening">Openen : </string>
+    <string name="whichstream">Welke stream:</string>
+    <string name="audio">Audio</string>
+    <string name="video">Video</string>
+    <string name="pause">Pauzeren</string>
+    <string name="loading">Laden : </string>
+    <string name="allshows">Alle shows</string>
+    <string name="youtubefeed">Youtube Feed</string>
+    <string name="play">Afspelen</string>
+</resources>
