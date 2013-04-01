@@ -106,7 +106,7 @@ public class Home extends Activity {
 					alertbox.show();
 				}else{
 					mp.stop();
-					play.setText("Play");
+					play.setText(R.string.play);
 				}
 			}
 
