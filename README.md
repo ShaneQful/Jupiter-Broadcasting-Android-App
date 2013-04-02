@@ -33,11 +33,12 @@ If anyone wants to read about its development of get any of my other apps got to
 
 #### Translators:
 
-* ShaneQful   : Irish
-* Citruspers  : Dutch
-* RaverTiny   : German
-* Tommy Brunn : Swedish
-* SENEQ\_o    : Romanian
+* ShaneQful      : Irish
+* Citruspers     : Dutch
+* RaverTiny      : German
+* Tommy Brunn    : Swedish
+* SENEQ\_o       : Romanian
+* David Brassard : French
 
 ### Notes on anyone wanting to contribute:
 
