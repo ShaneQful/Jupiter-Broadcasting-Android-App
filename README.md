@@ -35,6 +35,7 @@ If anyone wants to read about its development of get any of my other apps got to
 
 * ShaneQful      : Irish
 * Citruspers     : Dutch
+* Hauke          : German
 * RaverTiny      : German
 * Tommy Brunn    : Swedish
 * SENEQ\_o       : Romanian
