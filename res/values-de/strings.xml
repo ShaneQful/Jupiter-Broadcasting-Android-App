@@ -8,8 +8,8 @@
         <item >Stream</item>
     </string-array>
     <string name="openepisodetitle">Würdest du:</string>
-    <string name="plaiyinglivestream">Live Stream wird abgespielt^</string>
-    <string name="opening">- </string>
+    <string name="plaiyinglivestream">Spiele den Live Stream</string>
+    <string name="opening">Öffne</string>
     <string name="whichstream">Welcher Stream :</string>
     <string name="audio">Audio</string>
     <string name="video">Video</string>
