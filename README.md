@@ -45,11 +45,18 @@ If anyone wants to read about its development of get any of my other apps got to
 
 * [Use standard java style guide](http://www.oracle.com/technetwork/java/codeconv-138413.html)
 
-* Please justify your patches.
+* If you want to translate the app please fill in [this form](https://docs.google.com/forms/d/1m7tkmIxdvCA9effm-_BAH1azW-EtwZWElOx7qlecchE/viewform) or send a pull request with a strings.xml in the appropriate values-* folder.
 
 ### License
 
 * This software is MIT licensed see link for details
 
 * http://www.opensource.org/licenses/MIT
+
+### Notes:
+
+##### androidtranslator.rb
+Is a ruby script written to produce transaltions files from the csv file of the responses to the google docs form. There is also a small piece of Google App script which put the right two letter code in the last cell of each response if anyone would like it just ask.
+
+Note: This script makes use of bash so is Linux and Mac only.
 
