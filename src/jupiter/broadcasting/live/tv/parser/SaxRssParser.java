@@ -1,7 +1,6 @@
 package jupiter.broadcasting.live.tv.parser;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Hashtable;
 import java.util.Vector;
 import javax.xml.parsers.ParserConfigurationException;
@@ -21,7 +20,7 @@ public class SaxRssParser {
     private SAXParserFactory factory;
     private SAXParser saxParser;
     private RssHandler handler;
-    private Vector titles;
+    private Vector<String> titles;
     
     public SaxRssParser() {
         try {
