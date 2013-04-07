@@ -40,6 +40,7 @@ If anyone wants to read about its development of get any of my other apps got to
 * Tommy Brunn    : Swedish
 * SENEQ\_o       : Romanian
 * David Brassard : French
+* Byron          : Hungarian
 
 ### Notes on anyone wanting to contribute:
 
