@@ -29,6 +29,7 @@ public class RssListActivity extends Activity {
 				"Coder Radio",
 				"Faux Show",
 				"Linux Action Show",
+				"Plan B",
 				"SciByte",
 				"Techsnap",
 				"Unfilter"};
@@ -41,6 +42,7 @@ public class RssListActivity extends Activity {
 		showToFeedTable.put("SciByte", "http://feeds.feedburner.com/scibyteaudio");
 		showToFeedTable.put("Techsnap", "http://feeds.feedburner.com/techsnapmp3");
 		showToFeedTable.put("Unfilter", "http://www.jupiterbroadcasting.com/feeds/unfilterMP3.xml");
+		showToFeedTable.put("Plan B", "http://feeds.feedburner.com/planbmp3");
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, android.R.id.text1, shows);
 		showsListView.setAdapter(adapter);
