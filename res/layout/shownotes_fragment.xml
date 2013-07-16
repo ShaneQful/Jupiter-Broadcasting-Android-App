@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ProgressBar
+
+            android:layout_width="fill_parent"
+            android:layout_height="7dip"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:id="@+id/progressbar_Horizontal"
+            android:max="100"
+            android:maxHeight="7dip"
+            android:background="#00ff0000"
+            />
+
+    <WebView xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/notesview"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent"
+             android:layout_centerVertical="true"
+             android:layout_centerInParent="true"
+            />
+
+</LinearLayout>

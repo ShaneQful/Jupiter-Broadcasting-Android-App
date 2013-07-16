@@ -3,19 +3,16 @@
     <string name="app_name">Jupiter Broadcasting</string>
     <string name="rss">RSS Feed</string>
     <string name="donate">Donate</string>
-    <string-array name="OpenEpisode">
-        <item >Web Page</item>
-        <item >Stream</item>
-    </string-array>
-    <string name="openepisodetitle">Would you like to:</string>
     <string name="plaiyinglivestream">Playing Live Stream</string>
-    <string name="opening">Opening : </string>
     <string name="whichstream">Which Stream:</string>
     <string name="audio">Audio</string>
     <string name="video">Video</string>
     <string name="pause">Pause</string>
-    <string name="loading">Loading : </string>
     <string name="allshows">All Shows</string>
-    <string name="youtubefeed">Youtube Feed</string>
     <string name="play">Play</string>
+    <string name="notes">Notes</string>
+    <string name="drawer_open">open drawer</string>
+    <string name="drawer_close">close drawer</string>
+    <string name="alert">No Wi-fi connection!</string>
+    <string name="areyousure">Are you sure to start the video feed?</string>
 </resources>

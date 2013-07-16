@@ -13,7 +13,7 @@ import org.xml.sax.helpers.DefaultHandler;
  *
  * This software is MIT licensed see link for details
  * http://www.opensource.org/licenses/MIT
- * 
+ *
  * @author Shane Quigley
  */
 public class SaxRssParser {
@@ -21,7 +21,7 @@ public class SaxRssParser {
     private SAXParser saxParser;
     private RssHandler handler;
     private Vector<String> titles;
-    
+
     public SaxRssParser() {
         try {
             factory = SAXParserFactory.newInstance();
@@ -33,7 +33,7 @@ public class SaxRssParser {
             ex.printStackTrace();
         }
     }
-    
+
     public Hashtable<String,String[]> parse(String rssfeed){
         try {
             InputSource feedSource = new InputSource(rssfeed);
@@ -46,16 +46,16 @@ public class SaxRssParser {
         titles = handler.getTitles();
         return handler.getTable();
     }
-    
+
     public Vector<String> getTitles(){
         return titles;
     }
-    
+
     /**
      * Method to allow people to use custom handlers
      */
     public void setRssHadler(RssHandler h){
         handler = h;
     }
-    
+
 }

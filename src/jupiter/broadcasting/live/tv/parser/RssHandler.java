@@ -1,11 +1,14 @@
 package jupiter.broadcasting.live.tv.parser;
 
-import java.util.Hashtable;
-import java.util.Vector;
-import org.xml.sax.*;
+import android.util.Log;
+
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import android.util.Log;
+import java.util.Hashtable;
+import java.util.Vector;
+
 /*
  * Copyright (c) 2012 Shane Quigley
  *
@@ -13,20 +16,28 @@ import android.util.Log;
  * http://www.opensource.org/licenses/MIT
  * 
  * @author Shane Quigley
+ * @hacked Adam Szabo
  */
-public class RssHandler extends DefaultHandler{
+
+/**
+ * Constructor
+ */
+public class RssHandler extends DefaultHandler {
     private Vector<String> rssTitles;
     private Vector<String> rssLinks;
     private Vector<String> rssEnclosures;
+    private Vector<String> thumbnails;
     private String linkString;
     private String titleString;
     private int counter = 0;
-    private int maxRecords = 15;
+    private int maxRecords = 20;
+    private int page = 0;
     private boolean isLink = false;
     private boolean isTitle = false;
     private boolean ifInsideItem = false;
-    private boolean enclosure = true;
-    private boolean badLinkNext = false;
+    private boolean donethis = false;
+    private StringBuffer toAdd;
+
     /**
      * Constructor
      */
@@ -36,74 +47,91 @@ public class RssHandler extends DefaultHandler{
         rssTitles = new Vector<String>();
         rssLinks = new Vector<String>();
         rssEnclosures = new Vector<String>();
+        thumbnails = new Vector<String>();
+        toAdd = new StringBuffer();
     }
-    
-    /**
-     * Constructer that allows a little more control over parsing the feed
-     * @param title
-     * @param link
-     * @param numberOfRecords The max number of item to be parsed.
-     */
-    public RssHandler(String title,String link,int numberOfRecords) {
+
+    /*
+* Constructer that allows a little more control over parsing the feed
+* @param title
+* @param link
+* @param numberOfRecords The max number of item to be parsed.
+*/
+    public RssHandler(String title, String link, int targetpage) {
         titleString = title;
         linkString = link;
         rssTitles = new Vector<String>();
         rssLinks = new Vector<String>();
-        maxRecords = numberOfRecords;
+        page = targetpage;
         rssEnclosures = new Vector<String>();
+        thumbnails = new Vector<String>();
+        toAdd = new StringBuffer();
+
+
     }
-           
+
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        if(ifInsideItem){
+
+        if (ifInsideItem) {
+
             isLink = qName.equalsIgnoreCase(linkString);
             isTitle = qName.equalsIgnoreCase(titleString);
-            if(enclosure && qName.equalsIgnoreCase("enclosure")){
-                rssEnclosures.addElement(attributes.getValue("url"));
+            boolean enclosure = true;
+            if (!donethis) {
+                if (qName.equalsIgnoreCase("enclosure")) {
+                    rssEnclosures.addElement(attributes.getValue("url"));
+                }
+                if (qName.equalsIgnoreCase("media:thumbnail")){
+                    thumbnails.addElement(attributes.getValue("url"));
+                }
             }
-        }else{
+        } else {
             ifInsideItem = qName.equalsIgnoreCase("item");
         }
-        if(isTitle){
-            if(counter > maxRecords){
-                throw new SAXException("Parsing limit of "+maxRecords+" items reached");
+        if (isTitle) {
+            if (counter < (maxRecords * page + 1) && page > 0) {
+                donethis = true;
+            } else {
+                donethis = false;
             }
+            if (counter > maxRecords * (page + 1)) {
+                throw new SAXException("Parsing limit reached");
+            }
+            Log.e("Counting", "checked this much:" + counter + "on page " + page);
             counter++;
         }
     }
 
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        super.endElement(uri, localName, qName);
+        if (isLink && !donethis) {
+            rssLinks.addElement(toAdd.toString());
+        }else if (isTitle && !donethis) {
+            rssTitles.addElement(toAdd.toString());
+        }
+        toAdd = new StringBuffer();
     }
-    
+
     public void characters(char ch[], int start, int length) throws SAXException {
-    	String toAdd = new String(ch, start, length);
-    	if(!toAdd.contains("del.icio.us")){
-	        if (isLink && !badLinkNext) {
-	            rssLinks.addElement(new String(ch, start, length));
-	            isLink = false;
-	        }else if(isTitle){
-	            rssTitles.addElement(new String(ch, start, length));
-	            isTitle = false;
-	            badLinkNext = false;
-	        }
-    	}else{
-    		badLinkNext = true;
-    	}
+        if (isLink && !donethis) {
+            toAdd.append(new String(ch,start,length));
+        } else if (isTitle && !donethis) {
+            toAdd.append(new String(ch,start,length));
+        }
     }
-    
-    public Hashtable<String,String[]> getTable(){
-        Hashtable<String,String[]> output = new Hashtable<String,String[]>();
-        for(int i =0; i< rssTitles.size(); i++){
-        	try{
-        		output.put(rssTitles.elementAt(i), new String[]{rssLinks.elementAt(i),rssEnclosures.elementAt(i)});
-        	}catch (Exception e){
-        		Log.e("Woops", e.getMessage());
-        	}
+
+    public Hashtable<String, String[]> getTable() {
+        Hashtable<String, String[]> output = new Hashtable<String, String[]>();
+        for (int i = 0; i < rssTitles.size(); i++) {
+            try {
+                output.put(rssTitles.elementAt(i), new String[]{rssLinks.elementAt(i), rssEnclosures.elementAt(i), thumbnails.elementAt(i)});
+            } catch (Exception e) {
+                Log.e("Woops", e.getMessage());
+            }
         }
         return output;
     }
-    
-    public Vector<String> getTitles(){
+
+    public Vector<String> getTitles() {
         return rssTitles;
     }
 }
