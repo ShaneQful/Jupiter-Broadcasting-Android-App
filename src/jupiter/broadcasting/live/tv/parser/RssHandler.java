@@ -81,9 +81,6 @@ public class RssHandler extends DefaultHandler {
                 if (qName.equalsIgnoreCase("enclosure")) {
                     rssEnclosures.addElement(attributes.getValue("url"));
                 }
-                if (qName.equalsIgnoreCase("media:thumbnail")){
-                    thumbnails.addElement(attributes.getValue("url"));
-                }
             }
         } else {
             ifInsideItem = qName.equalsIgnoreCase("item");
@@ -123,7 +120,7 @@ public class RssHandler extends DefaultHandler {
         Hashtable<String, String[]> output = new Hashtable<String, String[]>();
         for (int i = 0; i < rssTitles.size(); i++) {
             try {
-                output.put(rssTitles.elementAt(i), new String[]{rssLinks.elementAt(i), rssEnclosures.elementAt(i), thumbnails.elementAt(i)});
+                output.put(rssTitles.elementAt(i), new String[]{rssLinks.elementAt(i), rssEnclosures.elementAt(i)});
             } catch (Exception e) {
                 Log.e("Woops", e.getMessage());
             }
