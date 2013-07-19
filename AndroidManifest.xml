@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jupiter.broadcasting.live.tv"
     android:versionCode="9"
-    android:versionName="2.2.4" >
+    android:versionName="2.2.4"
+    android:installLocation="preferExternal">
+
 
     <uses-sdk
         android:minSdkVersion="8"
