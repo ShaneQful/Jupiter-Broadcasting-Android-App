@@ -1,22 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <TableLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            >
-            <ImageView android:src="@drawable/jb" android:contentDescription="@string/app_name" android:layout_height="wrap_content" android:id="@+id/imageView1" android:layout_width="wrap_content"></ImageView>
-            <Button android:layout_width="wrap_content" android:id="@+id/button1" android:text="@string/play" android:layout_height="wrap_content"></Button>
-            <Button android:layout_height="wrap_content" android:text="@string/rss" android:id="@+id/button2" android:layout_width="wrap_content"></Button>
-            <Button android:text="@string/donate" android:layout_width="wrap_content" android:id="@+id/button3" android:layout_height="wrap_content"></Button>
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                >
+
+            <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                <ImageView
+                        android:src="@drawable/jb_icon"
+                        android:contentDescription="@string/app_name"
+                        android:layout_gravity="center"
+                        android:scaleType="centerInside"
+                        android:gravity="center"
+                        android:id="@+id/imageView1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="244dp"
+                        android:paddingLeft="30dp"
+                        android:paddingRight="30dp"/>
+
+            </LinearLayout>
+
+            <Button
+                    android:layout_width="fill_parent"
+                    android:id="@+id/button1"
+                    android:text="@string/play"
+                    android:layout_gravity="center_horizontal"
+                    android:singleLine="false"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"></Button>
+
+            <Button
+                    android:layout_height="wrap_content"
+                    android:text="@string/rss"
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"></Button>
+
+            <Button
+                    android:text="@string/donate"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/button3"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"></Button>
+
         </TableLayout>
     </ScrollView>
 </LinearLayout>

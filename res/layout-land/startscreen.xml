@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              tools:context=".Home">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:columnCount="2"
+                android:rowCount="1"
+                android:alignmentMode="alignMargins"
+                android:clickable="false">
+
+            <ImageView
+                    android:src="@drawable/jb_icon"
+                    android:contentDescription="@string/app_name"
+                    android:layout_gravity="left"
+                    android:scaleType="centerInside"
+                    android:gravity="left"
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="244dp"
+                    />
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="202dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical">
+
+                <Button
+                        android:layout_width="fill_parent"
+                        android:id="@+id/button1"
+                        android:text="@string/play"
+                        android:layout_gravity="right"
+                        android:singleLine="false"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content"/>
+
+                <Button
+                        android:id="@+id/button2"
+                        android:text="@string/rss"
+                        android:layout_width="fill_parent"
+                        android:layout_gravity="right"
+                        android:singleLine="false"
+                        android:layout_height="wrap_content"/>
+
+                <Button
+                        android:layout_width="fill_parent"
+                        android:id="@+id/button3"
+                        android:text="@string/donate"
+                        android:layout_gravity="right"
+                        android:singleLine="false"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
