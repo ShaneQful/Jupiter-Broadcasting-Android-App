@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="jupiter.broadcasting.live.tv"
-    android:versionCode="9"
-    android:versionName="2.2.4"
-    android:installLocation="preferExternal">
+          package="jupiter.broadcasting.live.tv"
+          android:versionCode="9"
+          android:versionName="2.2.4"
+          android:installLocation="preferExternal">
 
 
     <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="17"/>
+            android:minSdkVersion="8"
+            android:targetSdkVersion="18"/>
 
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
@@ -30,6 +30,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".RssListActivity">
+        </activity>
+
+        <activity android:name=".ShowNotesView">
         </activity>
     </application>
 

@@ -1,6 +1,6 @@
 package jupiter.broadcasting.live.tv;
 
-import android.app.Activity;
+
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -13,6 +13,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -29,7 +30,7 @@ import java.io.IOException;
  * @author Shane Quigley
  * @hacked Adam Szabo
  */
-public class Home extends Activity {
+public class Home extends ActionBarActivity {
     /**
      * Called when the activity is first created.
      */

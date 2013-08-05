@@ -102,7 +102,7 @@ public class RssHandler extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
         if (isLink && !donethis) {
             rssLinks.addElement(toAdd.toString());
-        }else if (isTitle && !donethis) {
+        } else if (isTitle && !donethis) {
             rssTitles.addElement(toAdd.toString());
         }
         toAdd = new StringBuffer();
@@ -110,9 +110,9 @@ public class RssHandler extends DefaultHandler {
 
     public void characters(char ch[], int start, int length) throws SAXException {
         if (isLink && !donethis) {
-            toAdd.append(new String(ch,start,length));
+            toAdd.append(new String(ch, start, length));
         } else if (isTitle && !donethis) {
-            toAdd.append(new String(ch,start,length));
+            toAdd.append(new String(ch, start, length));
         }
     }
 

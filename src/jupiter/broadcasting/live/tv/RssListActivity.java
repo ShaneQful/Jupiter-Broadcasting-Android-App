@@ -13,26 +13,24 @@ package jupiter.broadcasting.live.tv;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.Window;
-
 import java.util.Hashtable;
 
-
-
-public class RssListActivity extends SherlockFragmentActivity {
+public class RssListActivity extends ActionBarActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -41,9 +39,10 @@ public class RssListActivity extends SherlockFragmentActivity {
     public Hashtable<String, String> audioFeedTable;
     public Hashtable<String, String> videoFeedTable;
     public String[] shows;
+    public ActionBar aBar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
 
         shows = new String[]{getString(R.string.allshows),
                 "Coder Radio",
@@ -92,9 +91,10 @@ public class RssListActivity extends SherlockFragmentActivity {
 
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-        // enable ActionBar app icon to behave as action to toggle nav drawer (Not working for some reason)
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        // enable ActionBar app icon to behave as action to toggle nav drawer
+        aBar = getSupportActionBar();
+        aBar.setDisplayHomeAsUpEnabled(true);
+        aBar.setHomeButtonEnabled(true);
 
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,                  /* host Activity */
@@ -104,12 +104,12 @@ public class RssListActivity extends SherlockFragmentActivity {
                 R.string.drawer_close  /* "close drawer" description for accessibility */
         ) {
             public void onDrawerClosed(View view) {
-                getSupportActionBar().setTitle(mTitle);
+                aBar.setTitle(mTitle);
 
             }
 
             public void onDrawerOpened(View drawerView) {
-                getSupportActionBar().setTitle(mDrawerTitle);
+                aBar.setTitle(mDrawerTitle);
 
             }
         };
@@ -128,9 +128,10 @@ public class RssListActivity extends SherlockFragmentActivity {
             selectItem(position); //start fragment to download items for the selected show
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getSupportMenuInflater().inflate(R.menu.activity_main, menu);
+        getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
 
@@ -139,6 +140,7 @@ public class RssListActivity extends SherlockFragmentActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         return super.onPrepareOptionsMenu(menu);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // The action bar home/up action should open or close the drawer.
@@ -157,7 +159,7 @@ public class RssListActivity extends SherlockFragmentActivity {
     private void selectItem(int position) {
         // update the main content by replacing fragments
 
-        SherlockFragment fragment = new EpisodeListFragment();
+        Fragment fragment = new EpisodeListFragment();
         Bundle args = new Bundle();
         String afeed = audioFeedTable.get(shows[position]);
         String vfeed = videoFeedTable.get(shows[position]);
@@ -180,7 +182,7 @@ public class RssListActivity extends SherlockFragmentActivity {
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
-        getSupportActionBar().setTitle(mTitle);
+        aBar.setTitle(mTitle);
     }
 
     @Override
@@ -194,4 +196,5 @@ public class RssListActivity extends SherlockFragmentActivity {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
+
 }

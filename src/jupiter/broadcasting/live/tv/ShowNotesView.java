@@ -1,19 +1,14 @@
 package jupiter.broadcasting.live.tv;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
-
-import com.actionbarsherlock.app.SherlockFragment;
-
-
-
 
 /*
  * Copyright (c) 2013 Adam Szabo
@@ -26,7 +21,7 @@ import com.actionbarsherlock.app.SherlockFragment;
  */
 
 
-public class ShowNotesView extends SherlockFragment {
+public class ShowNotesView extends ActionBarActivity {
 
     View v;
     WebView wv;
@@ -34,12 +29,15 @@ public class ShowNotesView extends SherlockFragment {
     ProgressBar loadingProgressBar;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.shownotes_fragment);
+        link = this.getIntent().getStringExtra("link");
+        v = getLayoutInflater().inflate(R.layout.shownotes_fragment, null);
+        final ActionBar bar = getSupportActionBar();
+        String name =this.getIntent().getStringExtra("name");
+        bar.setTitle(name);
 
-        Bundle b = getArguments();
-        link = b.getString("Notes");
-
-        v = inflater.inflate(R.layout.shownotes_fragment, null);
         wv = (WebView) v.findViewById(R.id.notesview);
         loadingProgressBar = (ProgressBar) v.findViewById(R.id.progressbar_Horizontal);
         wv.getSettings().setJavaScriptEnabled(true);
@@ -83,14 +81,12 @@ public class ShowNotesView extends SherlockFragment {
         wv.addJavascriptInterface(new myJavaScriptInterface(), "CallToAnAndroidFunction");
         wv.loadUrl(link);
 
-
-        return v;
     }
 
     public class myJavaScriptInterface {
         @JavascriptInterface
         public void setVisible() {
-            getSherlockActivity().runOnUiThread(new Runnable() {
+            runOnUiThread(new Runnable() {
 
                 @Override
                 public void run() {
