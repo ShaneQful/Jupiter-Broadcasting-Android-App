@@ -48,6 +48,7 @@ public class RssListActivity extends ActionBarActivity {
                 "Coder Radio",
                 "Faux Show",
                 "Linux Action Show",
+                "LINUX Unplugged",
                 "Plan B",
                 "SciByte",
                 "Techsnap",
@@ -58,6 +59,7 @@ public class RssListActivity extends ActionBarActivity {
         audioFeedTable.put("Coder Radio", "http://feeds.feedburner.com/coderradiomp3");
         audioFeedTable.put("Faux Show", "http://www.jupiterbroadcasting.com/feeds/FauxShowMP3.xml");
         audioFeedTable.put("Linux Action Show", "http://feeds.feedburner.com/TheLinuxActionShow");
+        audioFeedTable.put("LINUX Unplugged", "http://feeds.feedburner.com/linuxunplugged");
         audioFeedTable.put("SciByte", "http://feeds.feedburner.com/scibyteaudio");
         audioFeedTable.put("Techsnap", "http://feeds.feedburner.com/techsnapmp3");
         audioFeedTable.put("Unfilter", "http://www.jupiterbroadcasting.com/feeds/unfilterMP3.xml");
@@ -68,6 +70,7 @@ public class RssListActivity extends ActionBarActivity {
         videoFeedTable.put("Coder Radio", "http://feeds.feedburner.com/coderradiovideo");
         videoFeedTable.put("Faux Show", "http://www.jupiterbroadcasting.com/feeds/FauxShowMobile.xml");
         videoFeedTable.put("Linux Action Show", "http://feeds.feedburner.com/linuxactionshowipodvid");
+        videoFeedTable.put("LINUX Unplugged", "http://feeds.feedburner.com/linuxunvid");
         videoFeedTable.put("SciByte", "http://feeds.feedburner.com/scibytelarge");
         videoFeedTable.put("Techsnap", "http://feeds.feedburner.com/techsnapmobile");
         videoFeedTable.put("Unfilter", "http://www.jupiterbroadcasting.com/feeds/unfilterMob.xml");

@@ -48,12 +48,13 @@ public class EpisodeListFragment extends Fragment {
     Hashtable<String, String[]> arssLinkTable;
     Hashtable<String, String[]> vrssLinkTable;
     ListView asyncResultView;
-    View v;
+    static View v;
+    
     ActionMode mMode;
-    MenuFragment mFragment1;
-    String aurls[];
-    String vurls[];
-    String title;
+    MenuBarFragment mFragment1;
+    static String aurls[];
+    static String vurls[];
+    static String title;
     ArrayAdapter<String> adapter;
     boolean first;
     int opId;
@@ -69,7 +70,7 @@ public class EpisodeListFragment extends Fragment {
         FragmentManager fm = getActivity().getSupportFragmentManager();
         ft = fm.beginTransaction();
         if (mFragment1 == null){
-            mFragment1 = new MenuFragment();
+            mFragment1 = new MenuBarFragment();
             ft.add(mFragment1, "mf");
         }
         ft.commit();
@@ -81,6 +82,7 @@ public class EpisodeListFragment extends Fragment {
         asyncResultView.setOnScrollListener(new EndlessScrollListener());
         asyncResultView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                long d = id;
                 aurls = arssLinkTable.get(parent.getAdapter().getItem(position));
                 vurls = vrssLinkTable.get(parent.getAdapter().getItem(position));
                 title = (String) parent.getAdapter().getItem(position);
@@ -95,8 +97,7 @@ public class EpisodeListFragment extends Fragment {
                 }
             }
         });
-        View footerView = inflater.inflate(R.layout.loadingline, null, false);
-        asyncResultView.addFooterView(footerView);
+        
         Bundle b = getArguments();
         afeed = b.getString("SHOW_AUDIO");
         vfeed = b.getString("SHOW_VIDEO");
@@ -107,7 +108,97 @@ public class EpisodeListFragment extends Fragment {
         return v;
     }
 
-    public class MenuFragment extends Fragment {
+    
+
+    public class EndlessScrollListener implements AbsListView.OnScrollListener {
+
+        private int visibleThreshold = 5;
+        private int currentPage = 0;
+        private int previousTotal = 0;
+        private boolean loading = true;
+
+        public EndlessScrollListener() {
+
+        }
+
+        public EndlessScrollListener(int visibleThreshold) {
+            this.visibleThreshold = visibleThreshold;
+        }
+
+        @Override
+        public void onScrollStateChanged(AbsListView absListView, int i) {
+
+        }
+
+        @Override
+        public void onScroll(AbsListView view, int firstVisibleItem,
+                             int visibleItemCount, int totalItemCount) {
+            //visibleThreshold = (5<arssLinkTable.size() && arssLinkTable.size()>0) ? 5:arssLinkTable.size()-1;
+            if (loading) {
+                if (totalItemCount > previousTotal) {
+                    loading = false;
+                    previousTotal = totalItemCount;
+                }
+            }
+            if (!loading && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
+                // load the next page of shows using a background task
+                //getSherlockActivity().setSupportProgressBarIndeterminateVisibility(true);
+                currentPage++;
+                RSS_parse scrollparse = new RSS_parse();
+                scrollparse.execute(afeed, vfeed, String.valueOf(currentPage));
+
+                loading = true;
+
+            }
+        }
+    }
+
+
+    public class RSS_parse extends AsyncTask<String, Integer, List<String>> {
+
+        @Override
+        protected List<String> doInBackground(String... link) {
+
+            int page = Integer.parseInt(link[2]);
+            SaxRssParser aparser = new SaxRssParser();
+            SaxRssParser vparser = new SaxRssParser();
+            RssHandler acustomhandler = new RssHandler("title", "link", page);
+            RssHandler vcustomhandler = new RssHandler("title", "link", page);
+            aparser.setRssHadler(acustomhandler);
+            vparser.setRssHadler(vcustomhandler);
+            if (first) {
+                arssLinkTable = aparser.parse(link[0]);
+                vrssLinkTable = vparser.parse(link[1]);
+
+            } else {
+                arssLinkTable.putAll(aparser.parse(link[0]));
+                vrssLinkTable.putAll(vparser.parse(link[1]));
+            }
+            episodes = vparser.getTitles();
+
+            return episodes;
+        }
+
+        @Override
+        protected void onPostExecute(List<String> args) {
+            if (first) {
+                adapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, args);
+
+
+                asyncResultView.setAdapter(adapter);
+                getActivity().setProgressBarIndeterminateVisibility(false);
+                first = false;
+            } else {
+                for (int i = 0; i < args.size(); i++) {
+                    adapter.add(args.get(i));
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+        }
+    }
+
+    public static class MenuBarFragment extends Fragment {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -177,90 +268,4 @@ public class EpisodeListFragment extends Fragment {
             return super.onOptionsItemSelected(item);
         }
     }
-
-    public class EndlessScrollListener implements AbsListView.OnScrollListener {
-
-        private int visibleThreshold = 5;
-        private int currentPage = 0;
-        private int previousTotal = 0;
-        private boolean loading = true;
-
-        public EndlessScrollListener() {
-        }
-
-        public EndlessScrollListener(int visibleThreshold) {
-            this.visibleThreshold = visibleThreshold;
-        }
-
-        @Override
-        public void onScrollStateChanged(AbsListView absListView, int i) {
-
-        }
-
-        @Override
-        public void onScroll(AbsListView view, int firstVisibleItem,
-                             int visibleItemCount, int totalItemCount) {
-            if (loading) {
-                if (totalItemCount > previousTotal) {
-                    loading = false;
-                    previousTotal = totalItemCount;
-                }
-            }
-            if (!loading && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
-                // load the next page of shows using a background task
-                //getSherlockActivity().setSupportProgressBarIndeterminateVisibility(true);
-                currentPage++;
-                RSS_parse scrollparse = new RSS_parse();
-                scrollparse.execute(afeed, vfeed, String.valueOf(currentPage));
-                loading = true;
-
-            }
-        }
-    }
-
-
-    public class RSS_parse extends AsyncTask<String, Integer, List<String>> {
-
-        @Override
-        protected List<String> doInBackground(String... link) {
-            int page = Integer.parseInt(link[2]);
-            SaxRssParser aparser = new SaxRssParser();
-            SaxRssParser vparser = new SaxRssParser();
-            RssHandler acustomhandler = new RssHandler("title", "link", page);
-            RssHandler vcustomhandler = new RssHandler("title", "link", page);
-            aparser.setRssHadler(acustomhandler);
-            vparser.setRssHadler(vcustomhandler);
-            if (first) {
-                arssLinkTable = aparser.parse(link[0]);
-                vrssLinkTable = vparser.parse(link[1]);
-
-            } else {
-                arssLinkTable.putAll(aparser.parse(link[0]));
-                vrssLinkTable.putAll(vparser.parse(link[1]));
-            }
-            episodes = vparser.getTitles();
-            if (page > 0) {
-                first = false;
-            }
-            return episodes;
-        }
-
-        @Override
-        protected void onPostExecute(List<String> args) {
-            if (first) {
-                adapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, args);
-
-
-                asyncResultView.setAdapter(adapter);
-                getActivity().setProgressBarIndeterminateVisibility(false);
-            } else {
-                for (int i = 0; i < args.size(); i++) {
-                    adapter.add(args.get(i));
-                }
-                adapter.notifyDataSetChanged();
-            }
-        }
-    }
-
-
 }
