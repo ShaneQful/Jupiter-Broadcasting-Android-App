@@ -30,6 +30,7 @@ If anyone wants to read about its development of get any of my other apps got to
 #### Developers:
 
 * ShaneQful
+* TByron
 
 #### Translators:
 
