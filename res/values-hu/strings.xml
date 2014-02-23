@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Jupiter Broadcasting</string>
-    <string name="rss">RSS folyam</string>
+    <string name="rss">RSS Folyam</string>
     <string name="donate">Adományok</string>
-    <string-array name="OpenEpisode">
-        <item >Honlap</item>
-        <item >Adás</item>
-    </string-array>
-    <string name="openepisodetitle">Szeretnél:</string>
     <string name="plaiyinglivestream">Élő adás lejátszása</string>
-    <string name="opening">Megyitás </string>
-    <string name="whichstream">Melyik adás</string>
+    <string name="whichstream">Melyik folyamot indítsuk?:</string>
     <string name="audio">Hang</string>
     <string name="video">Video</string>
     <string name="pause">Szünet</string>
-    <string name="loading">Betöltés </string>
     <string name="allshows">Minden műsor</string>
-    <string name="youtubefeed">Youtube folyam</string>
     <string name="play">Lejátszás</string>
+    <string name="notes">Jegyzet</string>
+    <string name="drawer_open">open drawer</string>
+    <string name="drawer_close">close drawer</string>
+    <string name="alert">Nincs Wi-fi kapcsolat!</string>
+    <string name="areyousure">Biztosan elindítod a videót?</string>
 </resources>
