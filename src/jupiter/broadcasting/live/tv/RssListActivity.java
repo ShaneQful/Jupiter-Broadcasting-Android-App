@@ -42,7 +42,7 @@ public class RssListActivity extends Activity {
 		showToFeedTable.put("Coder Radio", "http://feeds.feedburner.com/coderradiomp3");
 		showToFeedTable.put("Faux Show", "http://www.jupiterbroadcasting.com/feeds/FauxShowMP3.xml");
 		showToFeedTable.put("Linux Action Show", "http://feeds.feedburner.com/TheLinuxActionShow");
-		showToFeedTable.Put("LINUX Unplugged", "http://feeds.feedburner.com/linuxunplugged");
+		showToFeedTable.put("LINUX Unplugged", "http://feeds.feedburner.com/linuxunplugged");
 		showToFeedTable.put("SciByte", "http://feeds.feedburner.com/scibyteaudio");
 		showToFeedTable.put("Techsnap", "http://feeds.feedburner.com/techsnapmp3");
 		showToFeedTable.put("Unfilter", "http://www.jupiterbroadcasting.com/feeds/unfilterMP3.xml");
