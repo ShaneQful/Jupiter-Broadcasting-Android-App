@@ -3,7 +3,7 @@
 	<title>Playlist</title>
 	<trackList>
 		<track>
-			<location>rtsp://videocdn-us.geocdn.scaleengine.net/jblive/jblive.stream</location>
+			<location>rtsp://jblive.videocdn.scaleengine.net/jb-live/play/jblive.stream</location>
 			<extension application="http://www.videolan.org/vlc/playlist/0">
 				<vlc:id>0</vlc:id>
 				<vlc:option>rtsp-caching=2500</vlc:option>
