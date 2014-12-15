@@ -99,7 +99,7 @@ public class Home extends Activity {
 					});
 					alertbox.setNegativeButton(R.string.video, new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface arg0, int arg1) {
-							Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("rtsp://videocdn-us.geocdn.scaleengine.net/jblive/jblive.stream"));
+							Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("rtsp://jblive.videocdn.scaleengine.net/jb-live/play/jblive.stream"));
 							startActivity(i);						
 						}
 					});
