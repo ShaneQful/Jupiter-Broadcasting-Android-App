@@ -29,7 +29,7 @@ If anyone wants to read about its development of get any of my other apps got to
 
 #### Developers:
 
-* ShaneQful
+See [contributors](https://github.com/ShaneQful/Jupiter-Broadcasting-Android-App/graphs/contributors) for details. Unfortunately this doesn't include TByron who has a nice fork of the application but the code review would take more time than I have to give at the moment.
 
 #### Translators:
 
