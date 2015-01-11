@@ -34,7 +34,9 @@ public class RssListActivity extends Activity {
 				"Plan B",
 				"SciByte",
 				"Techsnap",
-				"Unfilter"};
+				"Tech Talk Today",
+				"Unfilter",
+				"Women's Tech Radio"};
 		showToFeedTable = new Hashtable<String,String>();
 		showToFeedTable.put(getString(R.string.youtubefeed), "http://www.youtube.com/rss/user/JupiterBroadcasting/videos.rss");
 		showToFeedTable.put(getString(R.string.allshows), "http://feeds.feedburner.com/JupiterBroadcasting");
@@ -42,11 +44,13 @@ public class RssListActivity extends Activity {
 		showToFeedTable.put("Coder Radio", "http://feeds.feedburner.com/coderradiomp3");
 		showToFeedTable.put("Faux Show", "http://www.jupiterbroadcasting.com/feeds/FauxShowMP3.xml");
 		showToFeedTable.put("Linux Action Show", "http://feeds.feedburner.com/TheLinuxActionShow");
-		showToFeedTable.Put("LINUX Unplugged", "http://feeds.feedburner.com/linuxunplugged");
+		showToFeedTable.put("LINUX Unplugged", "http://feeds.feedburner.com/linuxunplugged");
 		showToFeedTable.put("SciByte", "http://feeds.feedburner.com/scibyteaudio");
 		showToFeedTable.put("Techsnap", "http://feeds.feedburner.com/techsnapmp3");
 		showToFeedTable.put("Unfilter", "http://www.jupiterbroadcasting.com/feeds/unfilterMP3.xml");
 		showToFeedTable.put("Plan B", "http://feeds.feedburner.com/planbmp3");
+		showToFeedTable.put("Tech Talk Today", "http://feedpress.me/t3mp3");
+		showToFeedTable.put("Women's Tech Radio", "http://feeds.feedburner.com/wtrmp3");
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, android.R.id.text1, shows);
 		showsListView.setAdapter(adapter);
