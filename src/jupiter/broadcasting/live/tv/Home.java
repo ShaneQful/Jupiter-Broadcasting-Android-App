@@ -13,6 +13,9 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -112,6 +115,27 @@ public class Home extends Activity {
 
 		});
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main_menu, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		  switch (item.getItemId()) {
+		    case R.id.menu_pause:
+		    	stopService(new Intent(this, MediaPlayerService.class));
+		    return true;
+		    case R.id.menu_play:
+		    	startService(new Intent(this, MediaPlayerService.class));
+		    default:
+		      return super.onOptionsItemSelected(item);
+		  }
+	}
+	
 	@Override protected void onResume() {
 		super.onResume();
 		String ns = Context.NOTIFICATION_SERVICE;

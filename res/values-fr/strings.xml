@@ -18,4 +18,5 @@
     <string name="allshows">Toutes les émissions</string>
     <string name="youtubefeed">Flux Youtube</string>
     <string name="play">Jouer</string>
+    <string name="resume">Reprendre</string>
 </resources>

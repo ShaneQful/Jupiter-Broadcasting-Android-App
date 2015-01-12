@@ -1,9 +1,13 @@
 package jupiter.broadcasting.live.tv;
 
 import java.util.Hashtable;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -57,7 +61,7 @@ public class RssListActivity extends Activity {
 		showsListView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int pos,long id) {
 				Toast.makeText(getApplicationContext(),
-						getString(R.string.loading) + shows[pos], Toast.LENGTH_LONG)
+						getString(R.string.loading) + " " + shows[pos], Toast.LENGTH_LONG)
 						.show();
 				String feed = showToFeedTable.get(shows[pos]);
 				Intent episodeIntent = new Intent(view.getContext(), EpisodeListActivity.class);
@@ -66,5 +70,25 @@ public class RssListActivity extends Activity {
 				startActivityForResult(episodeIntent, 0);
 			}
 		});
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main_menu, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		  switch (item.getItemId()) {
+		    case R.id.menu_pause:
+		    	stopService(new Intent(this, MediaPlayerService.class));
+		    return true;
+		    case R.id.menu_play:
+		    	startService(new Intent(this, MediaPlayerService.class));
+		    default:
+		      return super.onOptionsItemSelected(item);
+		  }
 	}
 }
